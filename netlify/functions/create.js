@@ -1,10 +1,7 @@
-/* Import faunaDB sdk */
 const faunadb = require('faunadb')
 const q = faunadb.query
 
-/* export our lambda function as named "handler" export */
 exports.handler = async (event, context) => {
-  /* configure faunaDB Client with our secret */
   const client = new faunadb.Client({
     secret: process.env.FAUNADB_SERVER_SECRET
   })
@@ -18,11 +15,10 @@ exports.handler = async (event, context) => {
     )
   )
 
-  /* construct the fauna query */
   return createP
     .then(
       function (response) {
-        console.log(response.ref); // Logs the ref to the console.
+        console.log(response.ref);
         return {
           statusCode: 200,
           body: JSON.stringify(response)
