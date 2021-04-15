@@ -4,23 +4,14 @@
   let showText;
 
   onMount(async () => {
+    showText = "What's up?";
     await delay(1000);
-    showText = "Hello serverless function!";
-    await delay(2000);
     showText = false;
-    let response = await fetch("/.netlify/functions/hello");
+    await delay(1000);
+    let response = await fetch("/.netlify/functions/read-all");
     let object = await response.json();
-    showText = object.greeting;
-    await delay(2000);
-    showText = false;
-    await delay(1000);
-    showText = "Where are you?";
-    await delay(1000);
-    showText = false;
-    await delay(1000);
-    response = await fetch("/.netlify/functions/place");
-    object = await response.json();
-    showText = object.answer;
+    console.log(object.data);
+    showText = object.data;
   });
 
   function delay(delayInms) {
