@@ -7,16 +7,20 @@ exports.handler = async (event, context) => {
     const client = new faunadb.Client({
       secret: process.env.FAUNADB_SERVER_SECRET
     });
-    const todoItem = 'This is supposed to be a thing to do...'
-    const response = await client.query(
+    const object = JSON.parse(event.body);
+    console.log(event.body, object);
+    await client.query(
       q.Create(
         q.Collection('todos'),
         {
           data: {
-            name: todoItem
+            name: object.newTodo
           }
         }
       )
+    );
+    const response = await client.query(
+      q.Paginate(q.Match(q.Index('todos')))
     );
     console.log(response);
     return {
