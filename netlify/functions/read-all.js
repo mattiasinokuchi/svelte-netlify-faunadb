@@ -1,7 +1,5 @@
-/* Import faunaDB sdk */
 const faunadb = require('faunadb')
 const q = faunadb.query
-
 
 exports.handler = async (event, context) => {
   try {
@@ -9,18 +7,15 @@ exports.handler = async (event, context) => {
     const client = new faunadb.Client({
       secret: process.env.FAUNADB_SERVER_SECRET
     });
-    let collections = []; 
-    await client
-      .paginate(q.Collections())
-      .map(ref => q.Get(ref))
-      .each(page => {
-        collections = collections.concat(page);
-      });
-      return {
-        statusCode: 200,
-        body: JSON.stringify(collections)
-      }
-  } catch(error) {
+    const response = await client.query(
+      q.Paginate(q.Match(q.Index('todos')))
+    );
+    console.log(response);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(response)
+    }
+  } catch (error) {
     console.log(error);
     return {
       statusCode: 400,
