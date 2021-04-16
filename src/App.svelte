@@ -2,30 +2,27 @@
   import { fly } from "svelte/transition";
   import { onMount } from "svelte";
   let showHeading;
-  let showText;
+  let todo;
   let newTodo;
 
   onMount(async () => {
     showHeading = "What's up?";
-    showText = false;
     const response = await fetch("/.netlify/functions/read-all");
-    let object = await response.json();
-    console.log(object.data);
-    showText = object.data;
+    todo = await response.json();
+    console.log("Array of todos", todo);
   });
 
   async function submit() {
     try {
       const response = await fetch("/.netlify/functions/create", {
         method: "POST",
-        body: JSON.stringify({ newTodo : newTodo }),
+        body: JSON.stringify({ newTodo: newTodo }),
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       });
-      const object = await response.json();
-      console.log(object.data);
-      showText = object.data;
+      todo = await response.json();
+      console.log(todo);
     } catch (error) {
       console.log(error);
     }
@@ -36,8 +33,12 @@
   {#if showHeading}
     <h1>{showHeading}</h1>
   {/if}
-  {#if showText}
-    <h2 transition:fly="{{ y: 200, duration: 2000 }}">{showText}</h2>
+  {#if todo}
+    <h2>
+      {#each todo as { data }}
+        <span transition:fly={{ y: 200, duration: 2000 }}> {data.name}...</span>
+      {/each}
+    </h2>
   {/if}
   <form on:submit|preventDefault={submit}>
     <label for="todo_input">Add another thing:</label>
@@ -47,13 +48,10 @@
       name="newTodo"
       placeholder="Breathe deep three times"
     />
-    <input
-      type="submit"
-      value="Hit me!"
-    >
+    <input type="submit" value="Hit me!" />
   </form>
   <footer>
-    <hr>
+    <hr />
     This is a Serverless app written with
     <a href="https://svelte.dev/" target="_blank" rel="noreferrer noopener">
       Svelte
@@ -62,7 +60,7 @@
     <a href="https://fauna.com" target="_blank" rel="noreferrer noopener">
       FaunaDB
     </a>
-    and deployed with
+    deployed with
     <a
       href="https://www.netlify.com/"
       target="_blank"
@@ -76,13 +74,14 @@
 <style>
   form {
     position: fixed;
-    bottom: 20vw;
+    bottom: 20vh;
     left: 0;
     right: 0;
   }
   footer {
+    font-size: 2vh;
     position: fixed;
-    bottom: 5vw;
+    bottom: 5vh;
     left: 0;
     right: 0;
   }
