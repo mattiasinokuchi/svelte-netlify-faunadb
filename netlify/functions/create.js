@@ -19,13 +19,21 @@ exports.handler = async (event, context) => {
         }
       )
     );
-    const response = await client.query(
-      q.Paginate(q.Match(q.Index('todos')))
-    );
+    const response = await client
+      .query(q.Paginate(q.Match(q.Ref("indexes/todos"))));
     console.log(response);
+    const todoRefs = response.data
+    console.log("Todo refs", todoRefs)
+    console.log(`${todoRefs.length} todos found`)
+    const getAllTodoDataQuery = await todoRefs.map((ref) => {
+      return q.Get(ref)
+    });
+    console.log(getAllTodoDataQuery);
+    const ret = await client.query(getAllTodoDataQuery);
+    console.log(ret);
     return {
       statusCode: 200,
-      body: JSON.stringify(response)
+      body: JSON.stringify(ret)
     }
   } catch (error) {
     console.log(error)

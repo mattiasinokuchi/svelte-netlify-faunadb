@@ -1,18 +1,16 @@
 <script>
-  import { fly } from "svelte/transition";
   import { onMount } from "svelte";
-  let showHeading;
   let todo;
   let newTodo;
 
   onMount(async () => {
-    showHeading = "What's up?";
     const response = await fetch("/.netlify/functions/read-all");
     todo = await response.json();
     console.log("Array of todos", todo);
   });
 
   async function submit() {
+    todo = null;
     try {
       const response = await fetch("/.netlify/functions/create", {
         method: "POST",
@@ -30,25 +28,23 @@
 </script>
 
 <main>
-  {#if showHeading}
-    <h1>{showHeading}</h1>
-  {/if}
+  <h1>To do</h1>
   {#if todo}
     <h2>
-      {#each todo as { data }}
-        <span transition:fly={{ y: 200, duration: 2000 }}> {data.name}...</span>
+      {#each todo.reverse() as { data }}
+        <span>{data.name} ... </span>
       {/each}
     </h2>
   {/if}
   <form on:submit|preventDefault={submit}>
-    <label for="todo_input">Add another thing:</label>
+    <label for="todo_input">Add another:</label>
     <input
       type="text"
       bind:value={newTodo}
       name="newTodo"
       placeholder="Breathe deep three times"
     />
-    <input type="submit" value="Hit me!" />
+    <input type="submit" value="Push me!" />
   </form>
   <footer>
     <hr />
@@ -72,6 +68,9 @@
 </main>
 
 <style>
+  span {
+    white-space: break-spaces;
+  }
   form {
     position: fixed;
     bottom: 20vh;
