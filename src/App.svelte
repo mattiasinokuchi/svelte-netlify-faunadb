@@ -6,24 +6,13 @@
   let newTodo;
 
   onMount(async () => {
-    await delay(1000);
     showHeading = "What's up?";
-    await delay(1000);
     showText = false;
-    await delay(1000);
     const response = await fetch("/.netlify/functions/read-all");
     let object = await response.json();
     console.log(object.data);
     showText = object.data;
   });
-
-  function delay(delayInms) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(2);
-      }, delayInms);
-    });
-  }
 
   async function submit() {
     try {
