@@ -1,5 +1,5 @@
 <script>
-  import { fade } from "svelte/transition";
+  import { fly } from "svelte/transition";
   import { onMount } from "svelte";
   let showHeading;
   let showText;
@@ -37,7 +37,7 @@
     <h1>{showHeading}</h1>
   {/if}
   {#if showText}
-    <h2 transition:fade>{showText}</h2>
+    <h2 transition:fly="{{ y: 200, duration: 2000 }}">{showText}</h2>
   {/if}
   <form on:submit|preventDefault={submit}>
     <label for="todo_input">Add another thing:</label>
