@@ -37,14 +37,13 @@
     </h2>
   {/if}
   <form on:submit|preventDefault={submit}>
-    <label for="todo_input">Add another:</label>
     <input
       type="text"
       bind:value={newTodo}
       name="newTodo"
-      placeholder="Breathe deep three times"
+      placeholder="Add another"
     />
-    <input type="submit" value="Push me!" />
+    <input type="submit" value="Submit" />
   </form>
   <footer>
     <hr />
