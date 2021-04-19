@@ -1,7 +1,6 @@
 const faunadb = require('faunadb');
 const q = faunadb.query;
 
-
 exports.handler = async (event, context) => {
   try {
     console.log('Function `delete` invoked');
