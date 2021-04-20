@@ -24,4 +24,7 @@
     input {
         border-style: none;
     }
+    input:focus {
+        border-style: solid;
+    }
 </style>
