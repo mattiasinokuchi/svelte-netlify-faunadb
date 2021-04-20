@@ -1,16 +1,16 @@
 <script>
   import { onMount } from "svelte";
-  let todo;
+  let todos;
   let newTodo;
 
   onMount(async () => {
     const response = await fetch("/.netlify/functions/read-all");
-    todo = await response.json();
-    console.log("Array of todos", todo);
+    todos = await response.json();
+    console.log("Array of todos", todos);
   });
 
   async function submit() {
-    todo = null;
+    todos = null;
     try {
       const response = await fetch("/.netlify/functions/create", {
         method: "POST",
@@ -19,7 +19,7 @@
           "Content-Type": "application/json",
         },
       });
-      todo = await response.json();
+      todos = await response.json();
       console.log(todo);
     } catch (error) {
       console.log(error);
@@ -29,9 +29,9 @@
 
 <main>
   <h1>To do</h1>
-  {#if todo}
+  {#if todos}
     <h2>
-      {#each todo.reverse() as { data }}
+      {#each todos.reverse() as { data }}
         <input
           class="todo"
           bind:value={data.name}
