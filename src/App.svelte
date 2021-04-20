@@ -32,7 +32,10 @@
   {#if todo}
     <h2>
       {#each todo.reverse() as { data }}
-        <span>{data.name} ... </span>
+        <input
+          class="todo"
+          bind:value={data.name}
+        >
       {/each}
     </h2>
   {/if}
@@ -67,14 +70,14 @@
 </main>
 
 <style>
-  span {
-    white-space: break-spaces;
-  }
   form {
     position: fixed;
     bottom: 20vh;
     left: 0;
     right: 0;
+  }
+  .todo {
+    border-style: none;
   }
   footer {
     font-size: 2vh;
