@@ -39,7 +39,10 @@
     {#if $todos}
         <h2>
             {#each $todos as { data }, i}
-                <input bind:value={data.name} on:change={update(i + 1)} />
+                <div id="todo">
+                    <button class="button">🗑</button>
+                    <input bind:value={data.name} on:change={update(i + 1)} />
+                </div>
             {/each}
         </h2>
     {/if}
@@ -51,5 +54,11 @@
     }
     input:focus {
         border-style: solid;
+    }
+    button {
+        visibility: hidden;
+    }
+    #todo:focus-within .button {
+        visibility: visible;
     }
 </style>
