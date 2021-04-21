@@ -28,7 +28,6 @@
                 });
                 $todos = await response.json();
                 console.log($todos);
-                newTodo = "";
             } catch (error) {
                 console.log(error);
             }
