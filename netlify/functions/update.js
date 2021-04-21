@@ -7,11 +7,15 @@ exports.handler = async (event, context) => {
     const client = new faunadb.Client({
       secret: process.env.FAUNADB_SERVER_SECRET
     });
-    const id = JSON.parse(event.body.id);
-    const data = JSON.parse(event.body.data);
+    console.log(event.body);
+    const object = JSON.parse(event.body);
     await client.query(
       q.Update(
-        q.Ref(`classes/todos/${id}`), { data }
+        q.Ref(`classes/todos/${object.id}`), {
+          data: {
+            name: object.data
+          }
+        }
       )
     );
     // Get an object with an array of all documents Ref ID
