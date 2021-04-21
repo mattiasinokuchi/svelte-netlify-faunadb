@@ -72,6 +72,10 @@
 </main>
 
 <style>
+    h2 {
+        display: flex;
+        flex-wrap: wrap;
+    }
     input {
         border-style: none;
     }
