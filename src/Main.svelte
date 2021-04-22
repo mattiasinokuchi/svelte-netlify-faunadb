@@ -7,15 +7,11 @@
     onMount(async () => {
         const response = await fetch("/.netlify/functions/read-all");
         $todos = await response.json();
-        console.log("Array of todos", $todos);
     });
 
     const update = (num) =>
         async function () {
             try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
                 const response = await fetch("/.netlify/functions/update", {
                     method: "POST",
                     body: JSON.stringify({
@@ -27,7 +23,6 @@
                     },
                 });
                 $todos = await response.json();
-                console.log($todos);
             } catch (error) {
                 console.log(error);
             }
@@ -36,9 +31,6 @@
     const remove = (num) =>
         async function () {
             try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
                 const response = await fetch("/.netlify/functions/delete", {
                     method: "POST",
                     body: JSON.stringify({
@@ -50,7 +42,6 @@
                     },
                 });
                 $todos = await response.json();
-                console.log($todos);
             } catch (error) {
                 console.log(error);
             }
