@@ -54,8 +54,17 @@
         <h2>
             {#each $todos as { data }, i}
                 <div id="todo">
-                    <button class="button" on:click={remove(i + 1)}>🗑</button>
-                    <input bind:value={data.name} on:change={update(i + 1)} />
+                    <button
+                        class="button"
+                        on:click={remove(i + 1)}
+                    >
+                        🗑
+                    </button>
+                    <input
+                        bind:value={data.name}
+                        on:change={update(i + 1)}
+                        size={data.name.length}
+                    />
                 </div>
             {/each}
         </h2>
