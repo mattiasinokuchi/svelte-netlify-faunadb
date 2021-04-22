@@ -48,42 +48,39 @@
         };
 </script>
 
-<main>
-    <h1>To do</h1>
+<h1>To do</h1>
+
+<form>
     {#if $todos}
-        <h2>
-            {#each $todos as { data }, i}
-                <div id="todo">
-                    <button
-                        class="button"
-                        on:click={remove(i + 1)}
-                    >
-                        🗑
-                    </button>
-                    <input
-                        bind:value={data.name}
-                        on:change={update(i + 1)}
-                        size={data.name.length}
-                    />
-                </div>
-            {/each}
-        </h2>
+        {#each $todos as { data }, i}
+            <div id="todo">
+                <button class="button" on:click={remove(i + 1)}> 🗑 </button>
+                <input
+                    bind:value={data.name}
+                    on:change={update(i + 1)}
+                    size={data.name.length}
+                    maxlength="35"
+                />
+            </div>
+        {/each}
     {/if}
-</main>
+</form>
 
 <style>
-    h2 {
+    form {
         display: flex;
         flex-wrap: wrap;
     }
     input {
         border-style: none;
+        font-size: 2vh;
     }
     input:focus {
         border-style: solid;
     }
     button {
         visibility: hidden;
+        font-size: 2vh;
     }
     #todo:focus-within .button {
         visibility: visible;
