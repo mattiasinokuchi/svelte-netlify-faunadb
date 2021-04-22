@@ -25,9 +25,10 @@
         type="text"
         bind:value={newTodo}
         name="newTodo"
-        placeholder="Add another"
+        placeholder="Another thing"
+        maxlength="35"
     />
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Add" />
 </form>
 
 <style>
@@ -37,5 +38,9 @@
         margin-left: 15%;
         margin-right: 15%;
         width: 70%;
+    }
+
+    input {
+        font-size: 2vh;
     }
 </style>
