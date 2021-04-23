@@ -3,7 +3,7 @@
   import Form from "./Form.svelte";
   import Footer from "./Footer.svelte";
 </script>
-<div data-netlify-identity-button>Login with Netlify Identity</div>
+<div data-netlify-identity-button></div>
 <List />
 <Form />
 <Footer />
