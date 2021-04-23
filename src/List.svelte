@@ -57,7 +57,7 @@
         };
 </script>
 
-<h1>To do</h1>
+<h1>Faster To Do</h1>
 
 <form>
     {#if $todos}
