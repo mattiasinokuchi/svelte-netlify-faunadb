@@ -9,37 +9,13 @@
         $todos = await response.json();
         console.log("Array of todos", $todos);
     });
-
-    const update = (num) =>
+    const storage = (operation, num) =>
         async function () {
             try {
-                console.log(num);
+                console.log(operation, num);
                 console.log($todos[num - 1]);
                 console.log($todos[num - 1]["ref"]["@ref"]["id"]);
-                const response = await fetch("/.netlify/functions/update", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        id: $todos[num - 1]["ref"]["@ref"]["id"],
-                        data: $todos[num - 1]["data"]["name"],
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                $todos = await response.json();
-                console.log($todos);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-    const remove = (num) =>
-        async function () {
-            try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
-                const response = await fetch("/.netlify/functions/delete", {
+                const response = await fetch("/.netlify/functions/"+operation, {
                     method: "POST",
                     body: JSON.stringify({
                         id: $todos[num - 1]["ref"]["@ref"]["id"],
@@ -63,10 +39,10 @@
     {#if $todos}
         {#each $todos as { data }, i}
             <div id="todo">
-                <button class="button" on:click|preventDefault={remove(i + 1)}> 🗑 </button>
+                <button class="button" on:click|preventDefault={storage("delete", i + 1)}> 🗑 </button>
                 <input
                     bind:value={data.name}
-                    on:change={update(i + 1)}
+                    on:change={storage("update", i + 1)}
                     size={data.name.length}
                     maxlength="35"
                 />
