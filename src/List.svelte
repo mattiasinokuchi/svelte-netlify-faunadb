@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { todos } from "./stores";
+    import Button from "./Button.svelte";
 
     let i = 0;
 
@@ -32,29 +33,6 @@
                 console.log(error);
             }
         };
-
-    const remove = (num) =>
-        async function () {
-            try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
-                const response = await fetch("/.netlify/functions/delete", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        id: $todos[num - 1]["ref"]["@ref"]["id"],
-                        data: $todos[num - 1]["data"]["name"],
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                $todos = await response.json();
-                console.log($todos);
-            } catch (error) {
-                console.log(error);
-            }
-        };
 </script>
 
 <h1>Faster To Do</h1>
@@ -63,7 +41,7 @@
     {#if $todos}
         {#each $todos as { data }, i}
             <div id="todo">
-                <button class="button" on:click|preventDefault={remove(i + 1)}> 🗑 </button>
+                <div class="button"><Button /></div>
                 <input
                     bind:value={data.name}
                     on:change={update(i + 1)}
@@ -87,7 +65,7 @@
     input:focus {
         border-style: solid;
     }
-    button {
+    .button {
         visibility: hidden;
         font-size: 2vh;
     }
