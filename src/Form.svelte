@@ -1,10 +1,9 @@
 <script>
     import { todos } from "./stores";
     let newTodo;
-
     function submit() {
         try {
-            const object = { data: { name: newTodo}};
+            const object = { data: { name: newTodo } };
             fetch("/.netlify/functions/create", {
                 method: "POST",
                 body: JSON.stringify({ newTodo: newTodo }),
@@ -12,8 +11,7 @@
                     "Content-Type": "application/json",
                 },
             });
-            $todos.push(object);
-            $todos = $todos;
+            $todos = $todos.concat(object);
             newTodo = "";
         } catch (error) {
             console.log(error);
