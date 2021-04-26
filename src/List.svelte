@@ -12,12 +12,9 @@
     });
 
     const update = (num) =>
-        async function () {
+        function () {
             try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
-                const response = await fetch("/.netlify/functions/update", {
+                fetch("/.netlify/functions/update", {
                     method: "POST",
                     body: JSON.stringify({
                         id: $todos[num - 1]["ref"]["@ref"]["id"],
@@ -27,8 +24,6 @@
                         "Content-Type": "application/json",
                     },
                 });
-                $todos = await response.json();
-                console.log($todos);
             } catch (error) {
                 console.log(error);
             }
