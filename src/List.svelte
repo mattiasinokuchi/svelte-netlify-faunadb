@@ -1,22 +1,19 @@
 <script>
     import { onMount } from "svelte";
     import { todos } from "./stores";
+    import Button from "./Button.svelte";
 
     let i = 0;
 
     onMount(async () => {
         const response = await fetch("/.netlify/functions/read-all");
         $todos = await response.json();
-        console.log("Array of todos", $todos);
     });
 
     const update = (num) =>
-        async function () {
+        function () {
             try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
-                const response = await fetch("/.netlify/functions/update", {
+                fetch("/.netlify/functions/update", {
                     method: "POST",
                     body: JSON.stringify({
                         id: $todos[num - 1]["ref"]["@ref"]["id"],
@@ -26,44 +23,17 @@
                         "Content-Type": "application/json",
                     },
                 });
-                $todos = await response.json();
-                console.log($todos);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-    const remove = (num) =>
-        async function () {
-            try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
-                const response = await fetch("/.netlify/functions/delete", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        id: $todos[num - 1]["ref"]["@ref"]["id"],
-                        data: $todos[num - 1]["data"]["name"],
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                $todos = await response.json();
-                console.log($todos);
             } catch (error) {
                 console.log(error);
             }
         };
 </script>
 
-<h1>To do</h1>
-
 <form>
     {#if $todos}
         {#each $todos as { data }, i}
             <div id="todo">
-                <button class="button" on:click|preventDefault={remove(i + 1)}> 🗑 </button>
+                <div class="button"><Button /></div>
                 <input
                     bind:value={data.name}
                     on:change={update(i + 1)}
@@ -76,7 +46,7 @@
 </form>
 
 <style>
-    form {
+    form, div {
         display: flex;
         flex-wrap: wrap;
     }
@@ -87,7 +57,7 @@
     input:focus {
         border-style: solid;
     }
-    button {
+    .button {
         visibility: hidden;
         font-size: 2vh;
     }

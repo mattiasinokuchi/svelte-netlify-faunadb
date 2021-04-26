@@ -4,6 +4,7 @@
   import Footer from "./Footer.svelte";
 </script>
 
+<h1>To Do</h1>
 <List />
 <Form />
 <Footer />
