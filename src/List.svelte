@@ -54,7 +54,7 @@
 </form>
 
 <style>
-    form {
+    form, div {
         display: flex;
         flex-wrap: wrap;
     }
