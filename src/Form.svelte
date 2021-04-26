@@ -2,17 +2,18 @@
     import { todos } from "./stores";
     let newTodo;
 
-    async function submit() {
+    function submit() {
         try {
-            const response = await fetch("/.netlify/functions/create", {
+            const object = { data: { name: newTodo}};
+            fetch("/.netlify/functions/create", {
                 method: "POST",
                 body: JSON.stringify({ newTodo: newTodo }),
                 headers: {
                     "Content-Type": "application/json",
                 },
             });
-            $todos = await response.json();
-            console.log($todos);
+            $todos.push(object);
+            $todos = $todos;
             newTodo = "";
         } catch (error) {
             console.log(error);

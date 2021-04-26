@@ -8,7 +8,6 @@
     onMount(async () => {
         const response = await fetch("/.netlify/functions/read-all");
         $todos = await response.json();
-        console.log("Array of todos", $todos);
     });
 
     const update = (num) =>
