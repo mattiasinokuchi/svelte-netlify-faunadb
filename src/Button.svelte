@@ -4,12 +4,9 @@
     let i = 0;
 
     const remove = (num) =>
-        async function () {
+        function () {
             try {
-                console.log(num);
-                console.log($todos[num - 1]);
-                console.log($todos[num - 1]["ref"]["@ref"]["id"]);
-                const response = await fetch("/.netlify/functions/delete", {
+                fetch("/.netlify/functions/delete", {
                     method: "POST",
                     body: JSON.stringify({
                         id: $todos[num - 1]["ref"]["@ref"]["id"],
@@ -19,8 +16,7 @@
                         "Content-Type": "application/json",
                     },
                 });
-                $todos = await response.json();
-                console.log($todos);
+                $todos = [...$todos.slice(0, num - 1), ...$todos.slice(num)];
             } catch (error) {
                 console.log(error);
             }
