@@ -29,8 +29,6 @@
         };
 </script>
 
-<h1>Faster To Do</h1>
-
 <form>
     {#if $todos}
         {#each $todos as { data }, i}
