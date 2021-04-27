@@ -4,16 +4,16 @@
     async function submit() {
         try {
             const object = { data: { name: newTodo } };
+            newTodo = "";
             $todos = $todos.concat(object);
             const response = await fetch("/.netlify/functions/create", {
                 method: "POST",
-                body: JSON.stringify({ newTodo: newTodo }),
+                body: JSON.stringify({ newTodo: object.data.name }),
                 headers: {
                     "Content-Type": "application/json",
                 },
             });
             $todos = await response.json();
-            newTodo = "";
         } catch (error) {
             console.log(error);
         }
