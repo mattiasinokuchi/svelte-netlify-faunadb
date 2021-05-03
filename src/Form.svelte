@@ -16,6 +16,7 @@
             $todos = await response.json();
         } catch (error) {
             console.log(error);
+            alert(error);
         }
     }
 </script>
