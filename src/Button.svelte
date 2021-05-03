@@ -19,7 +19,6 @@
                 $todos = [...$todos.slice(0, num - 1), ...$todos.slice(num)];
             } catch (error) {
                 console.log(error);
-                alert(error);
             }
         };
 </script>
