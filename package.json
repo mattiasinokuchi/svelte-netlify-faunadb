@@ -5,6 +5,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
+    "serve": "npx serve public",
     "test": "npx nightwatch"
   },
   "devDependencies": {
