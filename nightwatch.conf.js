@@ -10,7 +10,7 @@ module.exports = {
 
     webdriver: {
         start_process: true,
-        server_path: 'node_modules/.bin/geckodriver',
+        server_path: 'node_modules/.bin/chromedriver',
         port: 9515
     },
 
@@ -25,8 +25,8 @@ module.exports = {
     test_settings: {
         default: {
             desiredCapabilities: {
-                browserName: 'firefox',
-                firefoxOptions: {
+                browserName: 'chrome',
+                chromeOptions: {
                     args: [
                         '--headless',
                         '--no-sandbox',
