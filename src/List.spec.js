@@ -5,6 +5,6 @@ describe('List', () => {
     afterEach(cleanup);
     test('should render', async () => {
         const { getByText } = render(List);
-        expect(getByText('To Do List'));
+        expect(getByText('To Do'));
     });
 });
