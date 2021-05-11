@@ -27,7 +27,6 @@
         name="newTodo"
         placeholder="Another thing"
         maxlength="35"
-        data-testid="todo-input"
     />
     <input type="submit" value="Add" />
 </form>
