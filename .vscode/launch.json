@@ -9,7 +9,6 @@
             "request": "launch",
             "name": "Launch Chromium against dev server",
             "url": "http://localhost:8888",
-            "reAttach": true,
             "webRoot": "${workspaceFolder}"
         }
     ]
