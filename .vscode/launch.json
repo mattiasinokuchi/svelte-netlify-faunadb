@@ -6,7 +6,7 @@
             "request": "launch",
             "name": "Launch Chromium against localhost",
             "url": "http://localhost:8888",
-            "webRoot": "${workspaceFolder}",
+            "webRoot": "${workspaceFolder}/src",
             "runtimeExecutable": "/usr/bin/chromium"
         }
     ]
