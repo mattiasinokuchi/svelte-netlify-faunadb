@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "firefox",
+            "type": "chromium",
             "request": "launch",
-            "name": "Launch Firefox against dev server",
+            "name": "Launch Chromium against dev server",
             "url": "http://localhost:8888",
             "reAttach": true,
             "webRoot": "${workspaceFolder}"
