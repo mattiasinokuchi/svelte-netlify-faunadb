@@ -51,7 +51,7 @@
     {#if $todos}
         {#each $todos as { data }, i}
             <div id="todo">
-                <button on:click|preventDefault={remove(i + 1)}>🗑</button>
+                <button on:click|preventDefault={remove(i + 1)} tabindex="0">🗑</button>
                 <input
                     bind:value={data.name}
                     on:change={update(i + 1)}
