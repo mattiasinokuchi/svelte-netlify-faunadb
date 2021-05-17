@@ -2,8 +2,6 @@
     import { onMount } from "svelte";
     import { todos } from "./stores";
 
-    let i = 0;
-
     onMount(async () => {
         const response = await fetch("/.netlify/functions/read-all");
         $todos = await response.json();
