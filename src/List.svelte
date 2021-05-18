@@ -78,11 +78,11 @@
     }
 
     button {
-        visibility: hidden;
+        opacity: 0;
         font-size: 2vh;
     }
 
     #todo:focus-within button {
-        visibility: visible;
+        opacity: 1;
     }
 </style>
