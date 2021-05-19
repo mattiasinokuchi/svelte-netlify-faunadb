@@ -53,7 +53,7 @@
                 <input
                     bind:value={data.name}
                     on:change={update(i + 1)}
-                    size={data.name.length}
+                    size={data.name.length + 4}
                     maxlength="35"
                 />
             </div>
