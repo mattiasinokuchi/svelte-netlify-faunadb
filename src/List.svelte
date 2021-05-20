@@ -69,8 +69,10 @@
     }
 
     input {
-        border-style: none;
         font-size: 2vh;
+        border-style: none;
+        background-color: black;
+        color: white;
     }
 
     input:focus {
