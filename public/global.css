@@ -1,7 +1,15 @@
 body {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
+  font-family: "myWebFont";
   text-align: center;
   color: white;
   background-color: black;
+}
+
+input {
+  font-family: "myWebFont";
+}
+
+@font-face {
+  font-family: "myWebFont";
+  src: url('./fonts/Branda-yolq.ttf');
 }
