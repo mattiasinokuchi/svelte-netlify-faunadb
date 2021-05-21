@@ -53,7 +53,7 @@
                 <input
                     bind:value={data.name}
                     on:change={update(i + 1)}
-                    size={data.name.length + 4}
+                    size={data.name.length}
                     maxlength="35"
                 />
             </div>
@@ -69,7 +69,7 @@
     }
 
     input {
-        font-size: 4vw;
+        font-size: 7vw;
         border-style: none;
         background-color: black;
         color: white;
@@ -81,7 +81,7 @@
 
     button {
         opacity: 0;
-        font-size: 4vw;
+        font-size: 7vw;
     }
 
     #todo:focus-within button {

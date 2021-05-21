@@ -8,3 +8,9 @@
 <List />
 <Form />
 <Footer />
+
+<style>
+  h1 {
+    font-size: 10vw;
+  }
+</style>
