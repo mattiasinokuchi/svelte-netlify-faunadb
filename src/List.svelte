@@ -69,7 +69,7 @@
     }
 
     input {
-        font-size: 2vh;
+        font-size: 4vw;
         border-style: none;
         background-color: black;
         color: white;
@@ -81,7 +81,7 @@
 
     button {
         opacity: 0;
-        font-size: 2vh;
+        font-size: 4vw;
     }
 
     #todo:focus-within button {
