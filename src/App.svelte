@@ -11,6 +11,6 @@
 
 <style>
   h1 {
-    font-size: 10vw;
+    font-size: 6vh;
   }
 </style>

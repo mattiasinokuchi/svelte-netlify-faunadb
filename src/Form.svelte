@@ -25,10 +25,11 @@
         type="text"
         bind:value={newTodo}
         name="newTodo"
-        placeholder="Another thing"
+        placeholder="	 ☉ ‿ ⚆ "
         maxlength="35"
+        size="15"
     />
-    <input type="submit" value="Add" />
+    <input type="submit" value="Add it" />
 </form>
 
 <style>
@@ -41,6 +42,7 @@
     }
 
     input {
-        font-size: 5vw;
+        font-size: 4vh;
+        border-style: none;
     }
 </style>
