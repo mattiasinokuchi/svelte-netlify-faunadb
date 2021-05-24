@@ -25,7 +25,7 @@
         type="text"
         bind:value={newTodo}
         name="newTodo"
-        placeholder="Type it here and..."
+        placeholder="Type here and..."
         maxlength="35"
         size="15"
     />
